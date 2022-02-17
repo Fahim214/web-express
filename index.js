@@ -7,29 +7,32 @@ app.use(express.json()) // for parsing application/json
 app.use(express.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
 
 var myLogger = function (request, response, next) {
-    request.time = new Date()
+    request.time = new Date().toLocaleDateString()
     next()
-  }
+}
 
-  app.use(myLogger)
+app.use(myLogger)
 
-app.get('/', function(request, response) {
+app.set('view engine', 'ejs')
+app.use('/assets', express.static('public'))
+
+app.get('/', function (request, response) {
     const kelas = {
         id: 1,
-        nama: "JAWa SCRIPT",
+        nama: "HTML dan CSS",
         date: request.time.toString()
     }
     // console.log("hello world");
-    response.json(kelas)
+    response.render('pages/index', {kelas: kelas})
 })
 
-app.get('/about',  function(request, response) {
-    response.redirect('https://expressjs.com/')
+app.get('/about', function (request, response) {
+    response.render('pages/about')
 })
 
 app.use(userRouter)
 app.use(dataRouter)
 
-app.listen(3001, function(){
-    console.log("info",'Server is running at port : ' + 3001);
+app.listen(3001, function () {
+    console.log("info", 'Server is running at port : ' + 3001);
 });

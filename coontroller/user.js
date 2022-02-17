@@ -5,19 +5,10 @@ let users = [
 
 module.exports = {
   index: function (request, response) {
-    if (users.length > 0) {
-      response.json({
-        status: true,
-        data: users,
-        method: request.method,
-        url: request.url,
-      });
-    } else {
-      response.json({
-        status: false,
-        message: "Data Kosong",
-      });
-    }
+    response.render('pages/user/index', {users})
+  },
+  create: function(request, response){
+    response.render('pages/user/create')
   },
   store: function (request, response) {
     users.push(request.body);

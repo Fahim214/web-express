@@ -8,6 +8,8 @@ router
   .get(userController.index)
   .post(userController.store);
 
+  router.get('/users/create', userController.create)
+
 router.put("/users/:id", userController.update );
 
 router.delete("/users/:userId", userController.delete );

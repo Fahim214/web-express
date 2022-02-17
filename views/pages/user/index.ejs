@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>User</title>
+    <link rel="stylesheet" href="assets/style.css">
+  </head>
+  <body>
+    <%- include('../../components/navbar') %>
+    <a href="/users/create">Register</a>
+    <h1>Daftar User</h1>
+    <ul>
+        <% if(users.length > 0) {%>
+        <% users.forEach(function(user) { %>
+            <li><%= user.nama%></li>
+       <% })%>
+        <% } else { %>
+            <p> Data User Kosong</p>
+        <% } %> 
+    </ul>
+    <footer>
+      <p>&copy: 2022 okdi host</p>
+    </footer>
+  </body>
+</html>
